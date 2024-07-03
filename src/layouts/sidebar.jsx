@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { CircleUser, Menu, Package2 } from "lucide-react";
+import { CircleUser, Menu, Music } from "lucide-react";
 import { NavLink, Outlet } from "react-router-dom";
 import { navItems } from "../App";
 
@@ -20,12 +20,15 @@ const Layout = () => {
       <div className="flex flex-col">
         <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
           <MobileSidebar />
-          <div className="w-full flex-1">{/* Add nav bar content here! */}</div>
+          <div className="w-full flex-1">
+            <SearchBar />
+          </div>
           <UserDropdown />
         </header>
         <main className="flex-grow p-4 overflow-auto">
           <Outlet />
         </main>
+        <FooterPlayerControls />
       </div>
     </div>
   );
@@ -36,8 +39,8 @@ const Sidebar = () => (
     <div className="flex h-full max-h-screen flex-col gap-2">
       <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
         <NavLink to="/" className="flex items-center gap-2 font-semibold">
-          <Package2 className="h-6 w-6" />
-          <span>Acme Inc</span>
+          <Music className="h-6 w-6" />
+          <span>Music Stream</span>
         </NavLink>
       </div>
       <div className="flex-1">
@@ -68,8 +71,8 @@ const MobileSidebar = () => (
           to="/"
           className="flex items-center gap-2 text-lg font-semibold mb-4"
         >
-          <Package2 className="h-6 w-6" />
-          <span className="sr-only">Acme Inc</span>
+          <Music className="h-6 w-6" />
+          <span className="sr-only">Music Stream</span>
         </NavLink>
         {navItems.map((item) => (
           <SidebarNavLink key={item.to} to={item.to}>
@@ -112,6 +115,45 @@ const SidebarNavLink = ({ to, children }) => (
   >
     {children}
   </NavLink>
+);
+
+const SearchBar = () => (
+  <input
+    type="text"
+    placeholder="Search..."
+    className="w-full px-4 py-2 border rounded-lg"
+  />
+);
+
+const FooterPlayerControls = () => (
+  <footer className="fixed bottom-0 left-0 right-0 flex items-center justify-between p-4 bg-muted/40 border-t">
+    <div className="flex items-center gap-4">
+      <Button variant="outline" size="icon">
+        <Music className="h-5 w-5" />
+      </Button>
+      <div className="flex flex-col">
+        <span className="text-sm font-semibold">Song Title</span>
+        <span className="text-xs text-muted-foreground">Artist Name</span>
+      </div>
+    </div>
+    <div className="flex items-center gap-4">
+      <Button variant="outline" size="icon">
+        <Music className="h-5 w-5" />
+      </Button>
+      <Button variant="outline" size="icon">
+        <Music className="h-5 w-5" />
+      </Button>
+      <Button variant="outline" size="icon">
+        <Music className="h-5 w-5" />
+      </Button>
+    </div>
+    <div className="flex items-center gap-4">
+      <input type="range" className="w-24" />
+      <Button variant="outline" size="icon">
+        <Music className="h-5 w-5" />
+      </Button>
+    </div>
+  </footer>
 );
 
 export default Layout;
