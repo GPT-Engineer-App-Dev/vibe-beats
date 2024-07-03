@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Home, Music, Library, Playlist } from "lucide-react";
+import { Home, Music, Library, ListMusic } from "lucide-react"; // Changed Playlist to ListMusic
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import Layout from "./layouts/sidebar"; // Use the sidebar layout
 import Index from "./pages/Index.jsx";
@@ -30,7 +30,7 @@ export const navItems = [
   {
     title: "Playlists",
     to: "/playlists",
-    icon: <Playlist className="h-4 w-4" />,
+    icon: <ListMusic className="h-4 w-4" />, // Changed Playlist to ListMusic
   },
 ];
 
